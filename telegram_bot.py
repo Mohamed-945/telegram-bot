@@ -61,10 +61,10 @@ def index():
 
 # إعداد Webhook
 async def setup_webhook():
-    webhook_url = f"https://telegram_bot.onrender.com/{7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU}"  # عدل هذا لاحقاً بالرابط الحقيقي
+    webhook_url = f"https://telegram-bot.onrender.com/{TOKEN}"  
     await bot.set_webhook(webhook_url)
 
 if __name__ == '__main__':
     asyncio.run(setup_webhook())
-    port = int(os.environ.get('PORT', 10000))  # مهم لـ Render
+    port = int(os.environ.get('PORT', 10000))  
     app.run(host='0.0.0.0', port=port)
