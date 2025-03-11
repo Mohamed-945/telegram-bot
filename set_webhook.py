@@ -1,8 +1,8 @@
-mport asyncio
+import asyncio
 from aiogram import Bot
 
 TOKEN = "7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"
-WEBHOOK_URL = "https://YOUR_DOMAIN/7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"  # رابط الدومين الخاص بك مع التوكن
+WEBHOOK_URL = "https://telegram-bot-c2uv.onrender.com/7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"  # ✅ رابط صحيح مع التوكن
 
 bot = Bot(token=TOKEN)
 
