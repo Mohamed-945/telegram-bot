@@ -3,7 +3,6 @@ from aiogram import Bot, Dispatcher, types, Router
 from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.storage.memory import MemoryStorage
 import asyncio
-import os
 
 # ✅ إعداد البوت مع التوكن المباشر
 TOKEN = "7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"
@@ -52,7 +51,8 @@ app = Flask(__name__)
 @app.route('/' + TOKEN, methods=['POST'])
 def receive_update():
     update = types.Update(**request.json)
-    asyncio.create_task(dp.feed_update(bot, update))  # إرسال التحديث للباكند
+    loop = asyncio.get_event_loop()
+    loop.create_task(dp.feed_update(bot, update))  # إرسال التحديث للباكند
     return "ok"
 
 # صفحة رئيسية للتأكد أن البوت يعمل
@@ -60,13 +60,4 @@ def receive_update():
 def index():
     return "البوت يعمل!"
 
-# ✅ إعداد الـ Webhook (تشغيله مرة واحدة يدوياً عند الحاجة فقط)
-async def setup_webhook():
-    webhook_url = f"https://telegram-bot.onrender.com/{TOKEN}"  # تأكد من رابط الدومين الصحيح
-    await bot.set_webhook(webhook_url)
-    print(f"✅ تم إعداد Webhook على الرابط: {webhook_url}")
-
-# ✅ تشغيل التطبيق
-if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 8080))  # 📢 هنا نأخذ البورت من Render بشكل صحيح
-    app.run(host='0.0.0.0', port=port)
+# ✅ لا حاجة لـ app.run، لأن gunicorn هو المسؤول عن التشغيل
