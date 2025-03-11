@@ -1,14 +1,14 @@
-import asyncio
+mport asyncio
 from aiogram import Bot
-from aiogram.client.default import DefaultBotProperties
 
 TOKEN = "7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"
-bot = Bot(token=TOKEN, default=DefaultBotProperties(parse_mode="HTML"))
+WEBHOOK_URL = "https://YOUR_DOMAIN/7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"  # رابط الدومين الخاص بك مع التوكن
 
-async def setup():
-    webhook_url = f"https://telegram-bot.onrender.com/{TOKEN}"  # تأكد من الرابط الصحيح
-    await bot.set_webhook(webhook_url)
-    print(f"✅ Webhook تم ضبطه: {webhook_url}")
+bot = Bot(token=TOKEN)
 
-if __name__ == '__main__':
-    asyncio.run(setup())
+async def set_webhook():
+    await bot.set_webhook(WEBHOOK_URL)
+    print("✅ Webhook تم ضبطه بنجاح!")
+
+if __name__ == "__main__":
+    asyncio.run(set_webhook())
