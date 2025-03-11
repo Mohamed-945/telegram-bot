@@ -61,7 +61,7 @@ def index():
 
 # إعداد Webhook
 async def setup_webhook():
-    webhook_url = f"https://اسم-المشروع.onrender.com/{TOKEN}"  # عدل هذا لاحقاً بالرابط الحقيقي
+    webhook_url = f"https://telegram_bot.onrender.com/{7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU}"  # عدل هذا لاحقاً بالرابط الحقيقي
     await bot.set_webhook(webhook_url)
 
 if __name__ == '__main__':
