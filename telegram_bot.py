@@ -4,6 +4,7 @@ from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.storage.memory import MemoryStorage
 import asyncio
 import os
+from aiogram import F
 
 # إعداد البوت
 TOKEN = "7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"
@@ -36,8 +37,6 @@ responses = {
 }
 
 # التعامل مع /start
-from aiogram import F
-
 @router.message(F.text == "/start")
 async def start(message: types.Message):
     await message.answer("👋 أهلاً بك في بوت ياا ملون!", reply_markup=keyboard)
@@ -64,10 +63,8 @@ async def setup_webhook():
     webhook_url = f"https://telegram-bot.onrender.com/{TOKEN}"  
     await bot.set_webhook(webhook_url)
 
+# تشغيل التطبيق
 if __name__ == '__main__':
-    if __name__ == '__main__':
+    asyncio.run(setup_webhook())  # إعداد الـ webhook
     port = int(os.environ.get('PORT', 10000))
-    app.run(host='0.0.0.0', port=port)
-
-    port = int(os.environ.get('PORT', 10000))  
     app.run(host='0.0.0.0', port=port)
