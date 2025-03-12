@@ -1,10 +1,9 @@
-from flask import Flask, request
 from aiogram import Bot, Dispatcher, types, Router
 from aiogram.client.default import DefaultBotProperties
 from aiogram.fsm.storage.memory import MemoryStorage
 import asyncio
 
-# ✅ توكن البوت مباشر
+# ✅ توكن البوت
 TOKEN = "7803240855:AAEKbgY2IV3WOETp12oCtt5d-Hvl42mWDpU"
 
 # ✅ تهيئة البوت و Dispatcher
@@ -45,17 +44,10 @@ async def start(message: types.Message):
 async def reply(message: types.Message):
     await message.answer(responses[message.text])
 
-# ✅ إعداد Flask
-app = Flask(__name__)
+# ✅ تشغيل البوت بالـ Polling
+if __name__ == "__main__":
+    async def main():
+        print("✅ البوت يعمل الآن باستخدام polling ...")
+        await dp.start_polling(bot)
 
-# ✅ استقبال Webhook من تيليجرام
-@app.route('/' + TOKEN, methods=['POST'])
-def receive_update():
-    update = types.Update(**request.json)
-    asyncio.create_task(dp.feed_update(bot, update))  # إرسال التحديث للباكند
-    return "ok", 200
-
-# ✅ صفحة رئيسية للتأكد أن البوت يعمل
-@app.route('/')
-def index():
-    return "✅ البوت يعمل بنجاح!", 200
+    asyncio.run(main())
